@@ -1,3 +1,4 @@
+use std::borrow::Borrow;
 use std::collections::hash_map::Entry;
 use std::collections::HashMap;
 use std::hash::Hash;
@@ -50,7 +51,11 @@ where
     }
 
     /// Return the number for a value.
-    pub fn number(&self, item: &T) -> Option<usize> {
+    pub fn number<Q>(&self, item: &Q) -> Option<usize>
+    where
+        T: Borrow<Q>,
+        Q: ?Sized + Eq + Hash,
+    {
         self.numbers.get(item).cloned()
     }
 
