@@ -9,8 +9,8 @@ mod serialize;
 use serialize::SerializedNumberer;
 
 /// Numberer for categorical values, such as features or class labels.
-#[serde(from = "SerializedNumberer<T>", into = "SerializedNumberer<T>")]
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(from = "SerializedNumberer<T>", into = "SerializedNumberer<T>")]
 pub struct Numberer<T>
 where
     T: Clone + Eq + Hash,
